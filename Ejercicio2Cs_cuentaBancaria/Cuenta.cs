@@ -41,7 +41,7 @@ namespace Ejercicio2Cs_cuentaBancaria
         //método detalles
         public virtual void Detalles()
         {
-            Console.WriteLine("El saldo es de : " + Saldo);
+            Console.WriteLine("El titular "+ Titular+"El saldo es de : " + Saldo);
         }
     }
 }

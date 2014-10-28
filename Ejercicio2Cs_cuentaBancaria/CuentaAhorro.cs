@@ -11,7 +11,7 @@ namespace Ejercicio2Cs_cuentaBancaria
         public bool Retirar { get; set; }
         public double Comision { get; set; }
 
-        public CuentaAhorro(String titular, double saldo, bool retirar, double comision)
+        public CuentaAhorro(String titular, double saldo, bool retirar=true, double comision=500)
         :base(titular,saldo)
         {
             Retirar = retirar;
@@ -20,20 +20,17 @@ namespace Ejercicio2Cs_cuentaBancaria
 
         public override void Detalles()
         {
-            Console.WriteLine("Titular: {0} Saldo: {1} Tarjeta de credito: {2} Límite: {3}",
-                Titular, Saldo, Retirar, Comision);
+            base.Detalles();
+            Console.WriteLine("Permite sacar dinero: {0} Comision: {1:p}",
+                 Retirar ? "Sí":"No", Comision);
         }
 
         public override double RetirarDinero(double retirada)
         {
             if (Retirar)
             {
-                Saldo -= retirada;
+                Saldo -= retirada + retirada * Comision;
                 Console.WriteLine("El titular: "+ Titular + " ha retirado "+ retirada + "y su saldo actual es de "+ Saldo);
-            }
-            else
-            {
-                Console.WriteLine("Operación denegada " + Titular + " su saldo " + Saldo + " es menor de lo que va a retirar que es de " + retirada);
             }
 
             return Saldo;

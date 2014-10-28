@@ -20,8 +20,9 @@ namespace Ejercicio2Cs_cuentaBancaria
 
         public override void Detalles()
         {
-            Console.WriteLine("Titular: {0} Saldo: {1} Tarjeta de credito: {2} Límite: {3}",
-                Titular,Saldo,TCredito,Limite);
+            base.Detalles();
+            Console.WriteLine("Tarjeta de credito: {0} Límite: {1}",
+                TCredito,Limite);
         }
 
         public override double RetirarDinero(double retirada)
@@ -31,9 +32,11 @@ namespace Ejercicio2Cs_cuentaBancaria
                 Saldo -= retirada;
                 Console.WriteLine("El titular: " + Titular + " ha retirado " + retirada + "y su saldo actual es de " + Saldo);
             }
-            else
+            else if (TCredito&&(Limite>Saldo-retirada))
             {
-                Console.WriteLine("Operación denegada " + Titular + " su saldo "+ Saldo + " es menor de lo que va a retirar que es de " + retirada);
+                Saldo -= retirada;
+                //para hacer operación denegada habrá que lanzar una excepción 
+                //Console.WriteLine("Operación denegada " + Titular + " su saldo "+ Saldo + " es menor de lo que va a retirar que es de " + retirada);
             }
 
             return Saldo;
