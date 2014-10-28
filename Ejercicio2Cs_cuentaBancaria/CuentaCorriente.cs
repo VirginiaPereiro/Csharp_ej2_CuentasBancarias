@@ -18,6 +18,8 @@ namespace Ejercicio2Cs_cuentaBancaria
             Limite = limite;
         }
 
+        
+
         public override void Detalles()
         {
             base.Detalles();
@@ -41,5 +43,7 @@ namespace Ejercicio2Cs_cuentaBancaria
 
             return Saldo;
         }
+
+       
     }
 }

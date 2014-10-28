@@ -16,6 +16,9 @@ namespace Ejercicio2Cs_cuentaBancaria
             CuentaCorriente cuenCorr1= new CuentaCorriente("Silvia Moreno",1000.1,true,100);
             CuentaCorriente cuenCorr2 = new CuentaCorriente("Cristina Vaquero", 51000.1, false, 250);
 
+            CuentaCorriente cc1 = crearCuentaConsola();//crear objeto cuenta corriente por consola
+            var cc2= crearCuentaConsola();
+
             cuenA1.IngresarDinero(500);
             cuenA2.IngresarDinero(320);
 
@@ -26,9 +29,32 @@ namespace Ejercicio2Cs_cuentaBancaria
 
             cuenCorr1.Detalles();
             cuenA2.Detalles();
+            cc2.Detalles();
 
             Console.ReadLine();
 
+        }
+
+        private static CuentaCorriente crearCuentaConsola()
+            //es un método estático por el main y privada para que no pueda ser llamada desde el exterior
+            //método para crear una cuenta corriente e ir metiendo por consola los valores para formar la cuenta corriente
+        {
+            Console.Write("Titular");
+            var t = Console.ReadLine();
+
+            Console.Write("Saldo");
+            var s = 0.0;
+            double.TryParse(Console.ReadLine(), out s);
+
+            Console.Write("Crédito");
+            var credito = false;
+            bool.TryParse(Console.ReadLine(), out credito);
+
+            Console.Write("Límite");
+            var limite = 0.0;
+            double.TryParse(Console.ReadLine(), out limite);
+
+            return new CuentaCorriente(t, s, credito, limite);
         }
     }
 }
