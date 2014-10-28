@@ -19,6 +19,39 @@ namespace Ejercicio2Cs_cuentaBancaria
             CuentaCorriente cc1 = crearCuentaConsola();//crear objeto cuenta corriente por consola
             var cc2= crearCuentaConsola();
 
+            //polimorfismo
+            Cuenta cp =new CuentaCorriente("Carlos",3200,true,300);
+
+            //casting
+            //queremos transformar cp que es cuenta a cpc que es cuenta corriente
+            CuentaCorriente cpc = (CuentaCorriente) cp;
+            
+            //forma segura de hacer un cast, dará null si fracasa la transformación
+            CuentaCorriente cpc2 = cp as CuentaCorriente;
+
+            //Para poder acceder a los atributos hay que forzar la transformación
+            Console.WriteLine(((CuentaCorriente)cp).Limite);
+
+            //accede al detalle de cuenta corriente porque es virtual 
+            //y va a sobreescribirlo al más específico, a la implementación más profunda
+            cp.Detalles();
+
+            //creamos un array de cuentas y lo manejamos al antojo recorriéndolo luego
+            var carr = new Cuenta[3];
+            carr[0] = crearCuentaConsola();
+            carr[1] = crearCuentaConsola();
+            carr[2] = new CuentaAhorro("Juan Ruíz", 22000.33, true, 0.25);
+
+            //recorremos el array
+            foreach (var cuenta in carr)
+            {
+                cuenta.Detalles();
+                if (cuenta is CuentaAhorro)
+                {
+                    Console.WriteLine("Soy de ahorro");
+                }
+            }
+
             cuenA1.IngresarDinero(500);
             cuenA2.IngresarDinero(320);
 
